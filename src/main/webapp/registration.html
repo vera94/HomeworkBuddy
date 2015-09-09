@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <script type="text/javascript" src="functionallity.js"></script>
+</head>
+<body>
+<div class="main-containe">
+	<div class="page-header">
+	  <h1>Homework Buddy</h1>
+	</div>
+	 <div class="row">
+	
+	<div class="col-md-9" id="detailsPart">
+	  <h2>Registration form:</h2>
+	  <form  class="center" id="register_form" role="form" method="post">
+	    <div class="form-group">
+	      <label for="photo">Photo:</label>
+	        <input type='file' onchange="readURL(this);" />
+			<img id="blah" src="#" alt="your image" />
+	    </div>
+	    <div class="form-group">
+	      <label for="usr">Name:</label>
+	      <input type="text" class="form-control" id="usr">
+	    </div>
+	    <div class="form-group">
+	      <label for="pwd">Password:</label>
+	      <input type="password" class="form-control" id="pwd">
+	    </div>
+		<div class="form-group">
+	      <label for="pwd_confirm">Confirm password:</label>
+	      <input type="password" class="form-control" id="pwd_confirm">
+	    </div>
+		<div class="form-group">
+	      <label for="full_name">Full name:</label>
+	      <input type="text" class="form-control" id="full_name">
+	    </div>
+		<div class="form-group">
+	      <label for="email">Email:</label>
+	      <input type="email" class="form-control" id="email">
+	    </div>
+		<div class="form-group">
+	      <label for="email">Number:</label>
+	      <input type="text" class="form-control" id="number">
+	    </div>
+		<div class="form-group">
+		<label for="role">I am a:</label>
+	          <select id="selectRole" class="form-control" onchange=roleChange()>
+					<option value="student">Student</option>
+					<option value="teacher">Teacher</option>
+	          </select>
+	    </div>
+		<div class="form-group" id="tchOnly">
+	      <label for="security_code">Security code:</label>
+	      <input type="password" class="form-control" id="security_code">
+	    </div>
+		<div class="form-group">
+	      <label for="targetGroup" >Faculty:</label>
+			<select id="selectFaculty" class="form-control" onchange=facultySelect()>
+				<option></option>
+				<option value="fmi">Faculty of Mathematics and Informatics</option>
+				<option value="edu">Faculty of Education</option>
+				<option value="phis">Faculty of Physics</option>
+			</select>
+		  <label for="targetGroup" >speciality:</label>
+			<select id="selectSpec" class="form-control">
+			</select>
+			    </div>
+		<div class="form-group" id="studOnly">
+		  <label for="targetGroup" >class:</label>
+			<select id="selectClass" class="form-control">
+				<option value="class4">2015/2016</option>
+				<option value="class1">2014/2015</option>
+				<option value="clas2">2013/2014</option>
+				<option value="class3">2012/2013</option>
+			</select>		
+	
+	      <label for="fac_num">Faculty number:</label>
+	      <input type="text" class="form-control" id="facNum">
+	    </div>
+		<button class="btn btn-lg btn-primary btn-block" type="button" onclick=register()>Create account</button>
+		<br/>
+		<button type="button" class="btn btn-md btn-primary " onclick=goHome()>Cancel</button>			
+	  </form>
+	</div>
+	</div>
+</div>
+</body>
+</html>

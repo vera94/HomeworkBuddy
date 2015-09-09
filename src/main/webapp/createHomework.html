@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Create homework</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="functionallity.js"></script>
+  <script type="text/javascript" src="hwFunctions.js"></script>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <script>
+  function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  </script>
+</head>
+<body>
+<div> <button type="button" class="btn btn-primary pull-right" onclick=logout()>Log out</button></div>
+	<div class="page-header">
+	  <h1>Homework Buddy</h1>
+	</div>
+ <div class="row">
+    <div class="col-md-3" id="menu">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="myProfile.html">My profile</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="secondPage.html">My homeworks</a></li>
+        <li><a href="homeTeacher.html">Homeworks</a></li>
+        <li><a href="createHomework.html">Create homework</a></li>
+		<li><a href="assess.html">Assess</a></li>
+      </ul>
+    </div>
+<div class="col-md-9" id="detailsPart">
+  <h2>Create homework :</h2>
+  <form role="form" class="center">
+    <div class="form-group">
+      <label for="homework">Homework:</label>
+      <input type="text" class="form-control" id="homework">
+    </div>
+	<div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" id="description">
+    </div>
+    <div class="form-group">
+      <label for="dueDate">Due date:</label>
+      <input type="date" class="form-control" id="dueDate">
+    </div>
+	<div class="form-group">
+      <label for="subject">Subject:</label>
+      <input type="text" class="form-control" id="subject">
+	</div>
+	<div class="form-group">
+  
+    		<div class="form-group">
+	      <label for="targetGroup" >Faculty:</label>
+			<select id="selectFaculty" class="form-control" onchange=facultySelect()>
+				<option></option>
+				<option value="fmi">Faculty of Mathematics and Informatics</option>
+				<option value="edu">Faculty of Education</option>
+				<option value="phis">Faculty of Physics</option>
+			</select>
+		  <label for="targetGroup" >speciality:</label>
+			<select id="selectSpec" class="form-control">
+			</select>
+			    </div>
+		<div class="form-group" id="studOnly">
+		  <label for="targetGroup" >class:</label>
+			<select id="selectClass" class="form-control">
+				<option value="class4">2015/2016</option>
+				<option value="class1">2014/2015</option>
+				<option value="clas2">2013/2014</option>
+				<option value="class3">2012/2013</option>
+			</select>								
+	    </div>
+	        </div>
+	<button class="btn btn-lg btn-primary btn-block" type="button" onclick="createHomework()">Create</button>			
+  </form>
+</div>
+</div>
+</body>
+</html>
