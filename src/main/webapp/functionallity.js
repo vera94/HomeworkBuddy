@@ -32,6 +32,7 @@
 			        	alert("Authentication failed");			        	
 			          },
 			        200: function() {
+			        	alert("Authentication not failed");	
 			        	window.location.replace("secondPage.html");;
 			        }
 		        }
