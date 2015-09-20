@@ -2,7 +2,7 @@
 		window.location.replace("registration.html");
 	}
 	function goHome() {
-		window.location.replace("welcome.html");
+		window.location.replace("index.html");
 	}	
 	
 	function login() {
@@ -44,7 +44,7 @@ function logout() {
 		type: "GET",
 		dataType: "text"
 	}).always(function(data){
-		window.location.replace("welcome.html");
+		window.location.replace("index.html");
 	});
 }
 
