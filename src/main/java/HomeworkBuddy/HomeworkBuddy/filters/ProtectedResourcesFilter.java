@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import HomeworkBuddy.HomeworkBuddy.model.User;
 import HomeworkBuddy.HomeworkBuddy.services.UserContext;
-/*
+
 @WebFilter("/rest/book/borrow")
 public class ProtectedResourcesFilter implements Filter {
 
@@ -50,4 +50,4 @@ public class ProtectedResourcesFilter implements Filter {
     public void destroy() {
     }
 
-}*/
+}

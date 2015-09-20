@@ -26,13 +26,15 @@ public class UserDAO {
 		this.em = em;
 	}
 
+
 	public void addUser(User user) {
 		user.setPassword(getHashedPassword(user.getPassword()));
 		em.persist(user);
+		em.flush();
 	}
 
 	public boolean validateUserCredentials(String userName, String password) {
-		String txtQuery = "SELECT u FROM User u WHERE u.username=:userName AND u.password=:password";
+		String txtQuery = "SELECT u FROM User u WHERE u.userName=:userName AND u.password=:password";
 		TypedQuery<User> query = em.createQuery(txtQuery, User.class);
 		query.setParameter("userName", userName);
 		query.setParameter("password", getHashedPassword(password));
@@ -44,7 +46,7 @@ public class UserDAO {
 	}
 
 	public User findUserByName(String userName) {
-		String txtQuery = "SELECT u FROM User u WHERE u.username = :userName";
+		String txtQuery = "SELECT u FROM User u WHERE u.userName = :userName";
 		TypedQuery<User> query = em.createQuery(txtQuery, User.class);
 		query.setParameter("userName", userName);
 		return queryUser(query);

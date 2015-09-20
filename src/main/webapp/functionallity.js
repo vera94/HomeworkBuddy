@@ -6,19 +6,19 @@
 	}	
 	
 	function login() {
-	    var username = $("#inputName")[0].value;
-	    var password = $("#inputPassword")[0].value;
+	    var userName = $("#userName")[0].value;
+	    var password = $("#password")[0].value;
 	    
 	    
-	    if(username == "" || password == "") {
+	    if(userName == "" || password == "") {
 	    	alert("Email and password should not be empty.");
 	    	return;
 	    }
 	    
 	    var data = { user : {
-		            username : username,
-		            password : password
-    			}
+	    		userName : userName,
+	            password : password
+			}
 	    }
 	
 	    $.ajax({
@@ -32,7 +32,6 @@
 			        	alert("Authentication failed");			        	
 			          },
 			        200: function() {
-			        	alert("Authentication not failed");	
 			        	window.location.replace("secondPage.html");;
 			        }
 		        }
@@ -48,6 +47,36 @@ function logout() {
 		window.location.replace("welcome.html");
 	});
 }
+
+$(document).ready(function() {
+//	$.ajax({
+//	    url: 'rest/user/authenticated',
+//	    type: "GET",
+//        dataType : "json",
+//	    statusCode: {
+//		        200: function() {
+//		        	$( ".login_register" ).hide();
+//                    isUserAuthenticated = true;
+//		        },
+//		        404: function() {
+//		        	$('.logout').hide();
+//		        }
+//	        }
+//	    });
+    $.ajax({
+        url: 'rest/user/current',
+        type: "GET",
+        dataType : "text"
+    }).always(function(data){
+        if (typeof data != 'undefined') {
+            $("#welcomeText").text("Welcome, "+ data);
+        } else {
+            //$(".welcome-greeting").hide();
+        }
+    });
+});
+
+
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -130,17 +159,17 @@ function register() {
     }
     
     var data = { user : {
-	            username : username,
-	            password : password,
-	            fullName : fullname,
-	            email : email,
-	            number : number,
-	            isTeacher : isTeacher,
-	            faculty : faculty,
-	            speciality : spec,
-	            year : year,
-	            facNum : facNum
-			}
+    		userName : username,
+            password : password,
+            fullName : fullname,
+            email : email,
+            number : number,
+            isTeacher : isTeacher,
+            faculty : faculty,
+            speciality : spec,
+            year : year,
+            facNum : facNum
+		}
     }
     
 	$.ajax({
@@ -150,7 +179,7 @@ function register() {
 	    data: JSON.stringify(data)
 	})
 	.success(function(data) {
-		window.location.replace("welcome.html");
+		window.location.replace("secondPage.html");
 	})
 	.fail(function(data) {
 		window.location.replace("registration.html");

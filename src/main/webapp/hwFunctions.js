@@ -19,7 +19,7 @@ function createHomework() {
     var year = $("#selectClass")[0].value;
  //TODO: proverki + proverka za registration
     
-    var data = { user : {
+    var data = { homework : {
 	            title : title,
 	            subject : subject,
 	            description : description,
@@ -37,7 +37,7 @@ function createHomework() {
 	    data: JSON.stringify(data)
 	})
 	.success(function(data) {
-		window.location.replace("welcome.html");
+		window.location.replace("secondPage.html");
 	})
 	.fail(function(data) {
 		window.location.replace("createHomework.html");
