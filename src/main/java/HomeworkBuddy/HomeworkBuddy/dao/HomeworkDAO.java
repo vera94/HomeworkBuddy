@@ -51,6 +51,11 @@ public class HomeworkDAO {
         }
     }
 
+	public Collection<Homework> getAllHomeworks() {
+		 String query ="SELECT h FROM Homework h";
+		 return em.createQuery(query, Homework.class).getResultList();
+	}
+
  /*   public void submitHomework(Homework bookToBorrow, User userWhoTakesTheBook) {
         Book foundBook = findById(bookToBorrow.getId());
         int newAmount = foundBook.getAmount() - 1;

@@ -11,20 +11,29 @@ import java.util.Collection;
 
 
 @Stateless
-@Path("homework")
+@Path("/homework")
 public class HomeworkManager {
-
+	private static final Response RESPONSE_OK = Response.ok().build();
     @Inject
     private HomeworkDAO homeworkDAO;
 
     @Inject
     private UserContext userContext;
 
-/*    @GET
+    @GET
+    @Path("/getHomeworks")
     @Produces("application/json")
     public Collection<Homework> getAllHomeworks() {
-        return homeworkDAO.getAllHomeworks().getResultList();
-    }*/
+        return homeworkDAO.getAllHomeworks();
+    }
+    
+    @POST
+    @Path("/addHomework")
+    @Produces("application/json")
+    public Response addHomework(Homework homework) {
+        homeworkDAO.addHomework(homework);
+        return RESPONSE_OK;
+    }
 
     @GET
     @Path("{homeworkId}")
