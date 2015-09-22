@@ -140,22 +140,35 @@ function deleteOptions(){
 function register() {
     var formUrl = $("#register_form").attr("action");
     var username = $("#usr")[0].value;
+    isDataValid(username, "username");
     var password = $("#pwd")[0].value;
+    isDataValid(password, "password");
     var fullname = $("#full_name")[0].value;
+    isDataValid(fullname, "fullname");
     var email = $("#email")[0].value;
+    isDataValid(username, "email");
     var number = $("#number")[0].value;
+    isDataValid(number, "number");
     var role = $("#selectRole")[0].value;
     var securityCode = $("#security_code")[0].value;
+    isDataValid(securityCode, "security code");
     var faculty = $("#selectFaculty")[0].value;
     var spec = $("#selectSpec")[0].value;
     var year = $("#selectClass")[0].value;
     var facNum = $("#facNum")[0].value;
+    isDataValid(securityCode, "faculty number");
     var isTeacher = 0;
     if(role == "teacher"){
     	isTeacher = securityCode;
     }
-    if(!isPasswordValid(password)) {
-        return ;
+    var confirmPassword = $("#pwd_confirm")[0].value;
+    if (password == "" || confirmPassword == "") {
+        alert("Please fill both fields for password and try again.");
+        validUser = false;
+    }
+    if (password != confirmPassword) {
+        alert("Two passwords do not match. Please correct the values and try again.");
+        return;
     }
     
     var data = { user : {
@@ -171,6 +184,7 @@ function register() {
             facNum : facNum
 		}
     }
+
     
 	$.ajax({
 	    url: 'rest/user/register',
@@ -186,15 +200,28 @@ function register() {
 	    alert("Error");
 	});
 }
-function isPasswordValid(password) {
-    var confirmPassword = $("#pwd_confirm")[0].value;
-    if (password == "" || confirmPassword == "") {
-        alert("Please fill both fields for password and try again.");
-        return false;
-    }
-    if (password != confirmPassword) {
-        alert("Two passwords do not match. Please correct the values and try again.");
-        return false;
-    }
-    return true;
+function isDataValid(data, name) {
+	var pat;
+	var onlyNumPat =/[0-9]/;
+	var numOrLettersPat = /[^a-zA-Z0-9]/;
+	var userNamePat = /[^a-zA-Z0-9\s]/;
+	var emailPat = /[^a-zA-Z0-9\_\@\.]/;
+	if(name === "email"){
+		pat = emailPat;
+	}
+	else if( name === "fullname"){
+		pat = userNamePat;
+	}
+	else if( name === "number" || name === "faculty number"){
+		pat = onlyNumPat;
+	}
+	else {
+		pat = emailPat;
+	}
+	var result = pat.exec(data);
+	if(result !== ""){
+		alert(name + " is not valid!");
+		return;
+	}
+
 }
