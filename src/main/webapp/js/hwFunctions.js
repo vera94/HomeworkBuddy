@@ -66,6 +66,7 @@ function renderRow(rowData, table) {
 
 function createHomework() {
     //var formUrl = $("#register_form").attr("action");
+	var teacher;
     var title = $("#homework")[0].value;
     var description = $("#description")[0].value;
     var endDate = $("#dueDate")[0].value;
@@ -74,13 +75,21 @@ function createHomework() {
     var spec = $("#selectSpec")[0].value;
     var year = $("#selectClass")[0].value;
  //TODO: proverki + proverka za registration
+	$.ajax({
+	    url: 'rest/user/currentUsr',
+	    type: "GET",
+	    contentType: "application/json"
+	})
+	.success(function(data) {
+		teacher = data.user.email;
+	})
     
     var data = { homework : {
 	            title : title,
 	            subject : subject,
 	            description : description,
 	            endDate : endDate,
-	            teacher : title,
+	            teacher : teacher,
 	            spec : spec,
 	            year : year
 			}
@@ -92,7 +101,7 @@ function createHomework() {
 	    contentType: "application/json;charset=UTF-8",
 	    data: JSON.stringify(data)
 	})
-	.success(function(data) {
+	.success(function(data) { 
 		window.location.replace("secondPage.html");
 	})
 	.fail(function(data) {

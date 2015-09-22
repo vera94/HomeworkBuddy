@@ -139,6 +139,7 @@ function deleteOptions(){
 
 function register() {
     var formUrl = $("#register_form").attr("action");
+    var picture = $("#blah").attr("src");
     var username = $("#usr")[0].value;
     isDataValid(username, "username");
     var password = $("#pwd")[0].value;

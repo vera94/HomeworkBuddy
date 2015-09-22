@@ -39,6 +39,8 @@ public class User implements Serializable {
     private Integer facNum;
     
     private String teacherKey = "1234abcd";
+    
+    private String picture;
 
     @OneToMany
     private Set<Homework> currentHomeworks = new HashSet<>();
@@ -47,7 +49,7 @@ public class User implements Serializable {
     }
 
     public User(String userName, String password, String fullName, String email, String number, String isTeacher, 
-    		String faculty, String speciality, int year, int facNum ) {
+    		String faculty, String speciality, int year, int facNum, String picture ) {
         this.userName = userName;
         this.password = password;
         this.fullName = fullName;
@@ -60,6 +62,7 @@ public class User implements Serializable {
         this.speciality = speciality;
         this.year = year;
         this.facNum = facNum; 
+        this.picture = picture;
         
     }
 
@@ -195,4 +198,12 @@ public class User implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 }
