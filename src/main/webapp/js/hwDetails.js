@@ -10,12 +10,16 @@ $(document).ready(function() {
 	        }
 	    });
     $.ajax({
-        url: 'rest/homework/homework?homeworkId=' +window.location.search.substring(1,10),
+        url: 'rest/homework/'+ window.location.search.substring(1,10),
         type: "GET",
         dataType: "json",
         success: (function(data) {
-    		teacher = data.homework.id;
-    		alert(id);
+    		homework = data.homework;
+    		$("#homework").text(homework.title);
+    		$("#description").text(homework.description);
+    		$("#datetime").text(homework.endDate.substring(0,10));
+    		
+    		
     	})
     });
 });
