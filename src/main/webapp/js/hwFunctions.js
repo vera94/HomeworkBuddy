@@ -40,10 +40,15 @@ function renderTable(data, table) {
     }
 }
 function renderRow(rowData, table) {
-    var row = $("<tr />")
+    var row = $("<tr />");
     table.append(row);
-    row.append($("<td>" + rowData.title + "</td>"));
-    row.append($("<td>" + rowData.endDate + "</td>"));
+    var date = rowData.endDate;//change
+    if (date){
+    	date = date.substring(0,10);
+    }
+    row.append($("<td>" + rowData.id + "</td>"));
+    row.append($("<td>" + rowData.title + "</td>"));    
+    row.append($("<td>" + date + "</td>"));
     row.append($("<td>" + rowData.subject + "</td>"));
     row.append($("<td>" + rowData.teacher + "</td>"));
     //if (isUserAuthenticated && rowData.amount > 0) {
@@ -51,17 +56,19 @@ function renderRow(rowData, table) {
     var link = $("<button>Details</button>");
     detailsTd.append(link);
     row.append(detailsTd);
+    link.click(function(){
+    	window.location.replace("more.html"+'?'+ rowData.id);
+    	//window.location.search= rowData.id;
+    });
 /*        link.click(function() {
             $.ajax({
-                url: 'rest/homework/borrow?bookId=' + rowData.id,
+                url: 'rest/homework/homework?homeworkId=' + rowData.id,
                 type: "PUT",
                 dataType: "json",
-                success: drawTableWithBooks
+                success: alert("wooho")
             });
-        });
-    } else {
-        row.append($("<td/>"));
-    }*/
+        });*/
+    
 }
 
 function createHomework() {

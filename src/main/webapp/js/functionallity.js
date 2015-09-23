@@ -181,7 +181,7 @@ function register() {
             isTeacher : isTeacher,
             faculty : faculty,
             speciality : spec,
-            year : year,
+            year : parseInt(year),//change
             facNum : facNum
 		}
     }
@@ -206,12 +206,16 @@ function isDataValid(data, name) {
 	var onlyNumPat =/[0-9]/;
 	var numOrLettersPat = /[^a-zA-Z0-9]/;
 	var userNamePat = /[^a-zA-Z0-9\s]/;
+	var fullNamePat= /[^a-zA-Z0-9\s]/;
 	var emailPat = /[^a-zA-Z0-9\_\@\.]/;
+	if(name === "username"){//change
+		pat = userNamePat;
+	}
 	if(name === "email"){
 		pat = emailPat;
 	}
 	else if( name === "fullname"){
-		pat = userNamePat;
+		pat = fullNamePat;//change
 	}
 	else if( name === "number" || name === "faculty number"){
 		pat = onlyNumPat;
